@@ -3,4 +3,3 @@ root = true;
 [*]
 indent_size = space
 indent_size = 2
-  
