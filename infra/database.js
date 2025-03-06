@@ -1,4 +1,7 @@
 import { Client } from "pg";
+import dotenv from "dotenv";
+
+dotenv.config("./.env");
 
 async function query(queryObject) {
   const client = new Client({
@@ -7,6 +10,7 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
+    ssl: process.env.TYPE_ENVIRONMENT === "development" ? false : true,
   });
   try {
     await client.connect();
@@ -15,7 +19,7 @@ async function query(queryObject) {
   } catch (err) {
     console.error("Error connecting to the database", err.stack);
   } finally {
-    client.end();
+    await client.end();
   }
 }
 
