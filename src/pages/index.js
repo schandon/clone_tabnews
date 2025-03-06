@@ -1,8 +1,11 @@
 export default function Home() {
   return (
     <>
-      <h1>Ingrid, Bom dia, Juridico do Alexandre aqui. 😎</h1>{" "}
-      <h2>Me da um beijinho? 😘</h2>
+      <h1>
+        Bom dia, Goombers gostaria de te convidar a participar do nosso novo
+        Canal de Conhecimento compartilhado. 😎
+      </h1>{" "}
+      <h2>Pagina em construção 😘</h2>
     </>
   );
 }
