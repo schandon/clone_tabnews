@@ -14,12 +14,21 @@ export default async function status(request, response) {
   // );
   // console.log(databaseOpenedConnectionsResult);
 
+  const databaseName = process.env.POSTGRES_DB;
+  const actiodatabaseOpenedConnectionResult = await database.query({
+    text: "SELECT COUNT(*)::int FROM pg_stat_activity WHERE datname = $1;",
+    values: [databaseName],
+  });
+  const activeDatabaseConnections =
+    actiodatabaseOpenedConnectionResult.rows[0].count;
+
   return response.status(200).json({
     updated_at: updatedAt,
     dependencies: {
       database: {
         version: versionValues,
         max_connetions: parseInt(maxConnectionsValues),
+        opend_connections: activeDatabaseConnections,
       },
     },
   });
