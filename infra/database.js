@@ -1,7 +1,4 @@
 import { Client } from "pg";
-import dotenv from "dotenv";
-
-dotenv.config("./.env");
 
 async function query(queryObject) {
   const client = new Client({
@@ -10,7 +7,7 @@ async function query(queryObject) {
     user: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
     database: process.env.POSTGRES_DB,
-    ssl: process.env.TYPE_ENVIRONMENT === "development" ? false : true,
+    ssl: getSSLValues(),
   });
   try {
     await client.connect();
@@ -21,6 +18,15 @@ async function query(queryObject) {
   } finally {
     await client.end();
   }
+}
+
+function getSSLValues() {
+  if (process.env.POSTGRES_CA) {
+    return {
+      ca: process.env.POSTGRES_CA,
+    };
+  }
+  return process.env.TYPE_ENVIRONMENT === "production" ? true : false;
 }
 
 export default { query: query };
