@@ -32,7 +32,7 @@ function getSSLValues() {
       ca: process.env.POSTGRES_CA,
     };
   }
-  return process.env.TYPE_ENVIRONMENT === "production" ? true : false;
+  return process.env.TYPE_ENVIRONMENT === "development" ? false : true;
 }
 
 export default { query, getNewClient };
