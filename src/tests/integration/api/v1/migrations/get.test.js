@@ -7,7 +7,9 @@ async function cleanDatabase() {
 }
 
 test("GET to /api/v1/migrations should return 200", async () => {
-  const response = await fetch("http://localhost:3001/api/v1/migrations");
+  const response = await fetch(
+    "https://clone-tabnews-fey697x2f-alexandre-pereiras-projects-78a90f7e.vercel.app//api/v1/migrations"
+  );
 
   expect(response.status).toBe(200);
   const responseBody = await response.json();
