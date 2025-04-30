@@ -4,11 +4,11 @@
   "description": "Estudo de como criar um projeto de Zero ao Deploy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run services:up && npm run wait-for-postgres && npm run migration:up && next dev",
     "dev:old": "next dev",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
+    "test": "npm run services:up && npm run wait-for-postgres && concurrently -n next,jest --hide next -k -s command-jest 'next dev' 'jest --runInBand' ",
     "test:watch": "jest --watchAll --runInBand",
     "test:migrations": "jest --watchAll --runInBand src/tests/integration/api/v1/migrations/get.test.js",
     "services:up": "docker compose -f infra/docker-compose.yaml up -d",
