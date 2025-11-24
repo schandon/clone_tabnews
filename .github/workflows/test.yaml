@@ -13,10 +13,6 @@ jobs:
         with: 
           node-version: 22.17.0
       
-      - name: Load environment variables
-        run: |
-          set -o allexport; source .env; set +o allexport
-
       - run: npm ci
 
       - run: npm test
