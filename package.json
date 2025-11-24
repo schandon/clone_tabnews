@@ -11,11 +11,11 @@
     "test": "npm run services:up && concurrently -n next,jest --hide next -k -s command-jest \"next dev\" \"jest --runInBand --verbose\"",
     "test:watch": "jest --watchAll --runInBand",
     "test:migrations": "jest --watchAll --runInBand src/tests/integration/api/v1/migrations/get.test.js",
-    "services:up": "docker compose -f infra/docker-compose.yaml up -d",
+    "services:up": "docker compose --env-file .env -f infra/docker-compose.yaml up -d",
     "services:stop": "docker compose -f infra/docker-compose.yaml stop",
     "services:down": "docker compose -f infra/docker-compose.yaml down",
     "migration:create": "node-pg-migrate -m infra/migrations create",
-    "migration:up": "node-pg-migrate -m infra/migrations --envPath .env.development up",
+    "migration:up": "node-pg-migrate -m infra/migrations --envPath .env up",
     "wait-for-postgres": "node infra/scripts/wait-for-postgres.js"
   },
   "author": "",
