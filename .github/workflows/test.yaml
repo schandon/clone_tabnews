@@ -3,17 +3,16 @@ name: Automated Tests
 on: pull_request # Pode escrever um série de coisas de podem ficar sendo escutadas, como exemplo: push, commit, ...
 
 jobs:
-  jest: 
+  jest:
     name: Jest Ubuntu
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4
-        with: 
+        with:
           node-version: 22.17.0
-      
+
       - run: npm ci
 
       - run: npm run test
-
