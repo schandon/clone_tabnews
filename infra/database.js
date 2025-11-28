@@ -35,4 +35,5 @@ function getSSLValues() {
   return process.env.TYPE_ENVIRONMENT === "development" ? false : true;
 }
 
-export default { query, getNewClient };
+const dbUtilities = { query, getNewClient }
+export default dbUtilities;
